@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Dispatch.Api/Dispatch.Api.csproj" />
+  <Project Path="Dispatch.Application/Dispatch.Application.csproj" />
+  <Project Path="Dispatch.Domain/Dispatch.Domain.csproj" />
+  <Project Path="Dispatch.Infrastructure/Dispatch.Infrastructure.csproj" />
+  <Project Path="Disptach.Shared/Disptach.Shared.csproj" />
+</Solution>
