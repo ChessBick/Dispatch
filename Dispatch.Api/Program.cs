@@ -1,5 +1,7 @@
 using Dispatch.Api.Extensions;
 using Dispatch.Api.Handlers;
+using Dispatch.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,13 +29,13 @@ var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var db = scope.ServiceProvider.GetRequiredService<DispatchDbContext>();
-//        await db.Database.MigrateAsync();
-//    if (app.Configuration.GetValue("SeedOnStartup", true))
-//        await SeedData.SeedAsync(db);
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<DispatchDbContext>();
+    await db.Database.MigrateAsync();
+    if (app.Configuration.GetValue("SeedOnStartup", true))
+        await SeedData.SeedAsync(db);
+}
 
 if (app.Environment.IsDevelopment())
 {
